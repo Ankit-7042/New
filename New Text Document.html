@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Open Me ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:black;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Slides */
+.slide{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+}
+
+.active{
+  display:block;
+}
+
+img{
+  width:260px;
+  border-radius:20px;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:#ff0044;
+  color:white;
+  cursor:pointer;
+}
+
+/* FINAL SCREEN FIX */
+#final{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active" id="s1">
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+  <h2>Aapne link khol hi liya 😄</h2>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="s2">
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+  <h2>Badi jaldi hai dekhne ki 😉</h2>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="s3">
+  <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif">
+  <h2>Thoda patience rakho 😌</h2>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="s4">
+  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
+  <h2>Almost pahuch gaye ❤️</h2>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide" id="s5">
+  <img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif">
+  <h2>Ready ho jao 😍</h2>
+  <button onclick="finalScreen()">Tap Here To Proceed</button>
+</div>
+
+<!-- FINAL PANDA SCREEN -->
+<div id="final">
+
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+
+  <h2>Please accept this rose 🌹</h2>
+  <h1>Be My Valentine? 💖</h1>
+
+  <button onclick="yesClicked()" style="background:green">YES ❤️</button>
+  <button id="noBtn" style="background:red">NO 💔</button>
+
+</div>
+
+<script>
+
+/* AUTO SLIDES */
+let current=1;
+
+function nextSlide(){
+  if(current<5){
+    document.getElementById("s"+current).classList.remove("active");
+    current++;
+    document.getElementById("s"+current).classList.add("active");
+  }
+}
+
+setInterval(nextSlide,5000);
+
+/* FINAL SCREEN FIX */
+function finalScreen(){
+
+  // Hide all slides
+  document.querySelectorAll(".slide").forEach(s=>{
+    s.style.display="none";
+  });
+
+  // Show final
+  document.getElementById("final").style.display="block";
+}
+
+/* YES CLICK */
+function yesClicked(){
+  alert("Yayyyy ❤️ Love You Forever 😘");
+}
+
+/* NO BUTTON TRICK */
+let no=document.getElementById("noBtn");
+
+no.addEventListener("mouseover",()=>{
+  no.style.position="absolute";
+  no.style.left=Math.random()*80+"%";
+  no.style.top=Math.random()*80+"%";
+});
+
+let start=Date.now();
+
+no.addEventListener("click",()=>{
+  if(Date.now()-start<5000){
+    alert("No allowed 😜 It’s YES only ❤️");
+  }else{
+    yesClicked();
+  }
+});
+</script>
+
+</body>
+</html>
